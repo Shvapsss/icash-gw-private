@@ -1,4 +1,4 @@
-package com.icashgw.icashgw;
+package com.icashgw.icashgw.entity;
 
 import org.springframework.data.annotation.Id;
 

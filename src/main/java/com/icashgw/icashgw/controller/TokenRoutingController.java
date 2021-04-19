@@ -1,24 +1,24 @@
-package com.icashgw.icashgw;
+package com.icashgw.icashgw.controller;
 
+import com.icashgw.icashgw.service.TokenRoutingServise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
-public class TestController {
+public class TokenRoutingController {
 
     @Autowired
     private TokenRoutingServise tokenRoutingServise;
 
-    @RequestMapping("/cash")
+    @RequestMapping("/cashbox")
     // public MapCash hello(@RequestParam String name){
     public List<String> auth(@RequestHeader String token){
         return tokenRoutingServise.hosts(token);
     }
-    //hels check
+    //health check
 
 }

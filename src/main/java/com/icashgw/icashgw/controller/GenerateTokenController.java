@@ -1,5 +1,9 @@
-package com.icashgw.icashgw;
+package com.icashgw.icashgw.controller;
 
+import com.icashgw.icashgw.entity.MapCashBox;
+import com.icashgw.icashgw.entity.User;
+import com.icashgw.icashgw.repo.MapCashRepository;
+import com.icashgw.icashgw.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,23 +13,22 @@ import java.util.UUID;
 
 
 @RestController
-public class AuthController {
+public class GenerateTokenController {
     @Autowired
     private UserRepository userRepository;
     @Autowired
     private MapCashRepository mapCashRepository;
 
     @RequestMapping("/generatetoken")
-    public String getAuth(@RequestHeader String user, @RequestHeader String password)
+    public String setGenerateToken(@RequestHeader String username, @RequestHeader String password)
     {
-        User user1 = userRepository.findByUsername(user);
-
-        if(user1!= null && user1.getPassword().equals(password)){
+        User userFind = userRepository.findByUsername(username);
+        if(userFind!= null && userFind.getPassword().equals(password)){
 
             String token = UUID.randomUUID().toString();
-            MapCash mapCash = new MapCash();
-            mapCash.setToken(token);
-            mapCashRepository.save(mapCash);
+            MapCashBox mapCashBox = new MapCashBox();
+            mapCashBox.setToken(token);
+            mapCashRepository.save(mapCashBox);
 
              return token;
         }else{

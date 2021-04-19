@@ -1,11 +1,11 @@
-package com.icashgw.icashgw;
+package com.icashgw.icashgw.entity;
 
 import org.springframework.data.annotation.Id;
 
 import java.util.List;
 
 
-public class MapCash {
+public class MapCashBox {
     @Id
     private String token;
     private List<String> host;
