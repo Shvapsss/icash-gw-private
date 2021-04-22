@@ -20,7 +20,11 @@ public class GenerateTokenController {
     private MapCashRepository mapCashRepository;
 
     @RequestMapping("/generatetoken")
-    public String setGenerateToken(@RequestHeader String username, @RequestHeader String password)
+    public String setGenerateToken(
+            @RequestHeader String username,
+            @RequestHeader String inn,
+            @RequestHeader String password
+    )
     {
         User userFind = userRepository.findByUsername(username);
         if(userFind!= null && userFind.getPassword().equals(password)){
@@ -28,6 +32,7 @@ public class GenerateTokenController {
             String token = UUID.randomUUID().toString();
             MapCashBox mapCashBox = new MapCashBox();
             mapCashBox.setToken(token);
+            mapCashBox.setToken(inn);
             mapCashRepository.save(mapCashBox);
 
              return token;
