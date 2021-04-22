@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -20,5 +21,12 @@ public class TokenRoutingController {
         return tokenRoutingServise.hosts(token);
     }
     //health check
+
+    @RequestMapping("/execute")
+    public String execute(@RequestHeader String token, HttpServletRequest httpServletRequest){
+        List<String> hosts = tokenRoutingServise.hosts(token);
+        String hostURL = hosts.get(0);
+        return "";
+    }
 
 }

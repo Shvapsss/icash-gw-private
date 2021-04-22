@@ -37,4 +37,29 @@ public class GenerateTokenController {
 
     }
 
+    @RequestMapping("/updatetoken")
+    public String setUpdateToken(@RequestHeader String token, @RequestHeader String host)
+    {
+        MapCashBox tokenFindObj = mapCashRepository.findById(token).get();
+
+
+
+
+//        User userFind = userRepository.findByUsername(username);
+//        if(userFind!= null && userFind.getPassword().equals(password)){
+//
+//            String token = UUID.randomUUID().toString();
+//            MapCashBox mapCashBox = new MapCashBox();
+//            mapCashBox.setToken(token);
+//            mapCashRepository.save(mapCashBox);
+//
+//            return token;
+//        }else{
+//            return "Не верны данные авторизации.";
+//        }
+
+        return tokenFindObj.getToken();
+    }
+
+
 }
