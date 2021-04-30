@@ -1,16 +1,15 @@
 package com.icashgw.icashgw.entity;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
 @Document(collection = "mapCashBox")
 public class MapCashBox {
-    @Id
+//    @Id
     private String token;
 
-    private String inn;
+    private String organization;
     private List<String> host;
 
     public List<String> getHost() {
@@ -29,11 +28,11 @@ public class MapCashBox {
         this.token = token;
     }
 
-    public String getInn() {
-        return inn;
+    public String getOrganization() {
+        return organization;
     }
 
-    public void setInn(String inn) {
-        this.inn = inn;
+    public void setOrganization(String organization) {
+        this.organization = organization;
     }
 }

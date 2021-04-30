@@ -32,7 +32,7 @@ public class GenerateTokenController {
             String token = UUID.randomUUID().toString();
             MapCashBox mapCashBox = new MapCashBox();
             mapCashBox.setToken(token);
-            mapCashBox.setInn(inn);
+            mapCashBox.setOrganization(inn);
             mapCashRepository.save(mapCashBox);
 
              return token;
