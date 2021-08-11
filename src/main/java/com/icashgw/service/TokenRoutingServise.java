@@ -1,11 +1,9 @@
-package com.icashgw.icashgw.service;
+package com.icashgw.service;
 
-import com.icashgw.icashgw.entity.MapCashBox;
-import com.icashgw.icashgw.repo.MapCashRepository;
+import com.icashgw.repo.MapCashRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

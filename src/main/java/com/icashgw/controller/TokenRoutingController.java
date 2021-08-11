@@ -1,6 +1,6 @@
-package com.icashgw.icashgw.controller;
+package com.icashgw.controller;
 
-import com.icashgw.icashgw.service.TokenRoutingServise;
+import com.icashgw.service.TokenRoutingServise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

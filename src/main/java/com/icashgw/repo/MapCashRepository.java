@@ -1,6 +1,6 @@
-package com.icashgw.icashgw.repo;
+package com.icashgw.repo;
 
-import com.icashgw.icashgw.entity.MapCashBox;
+import com.icashgw.entity.MapCashBox;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.icashgw.icashgw;
+package com.icashgw;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

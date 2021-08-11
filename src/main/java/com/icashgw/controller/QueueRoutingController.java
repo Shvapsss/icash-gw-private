@@ -1,8 +1,9 @@
-package com.icashgw.icashgw.controller;
+package com.icashgw.controller;
 
-import com.icashgw.icashgw.entity.MapCashBox;
-import com.icashgw.icashgw.entity.User;
-import com.icashgw.icashgw.repo.UserRepository;
+import com.icashgw.entity.JsonRequest;
+import com.icashgw.entity.User;
+import com.icashgw.repo.JsonReqestRepository;
+import com.icashgw.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,8 @@ import java.util.UUID;
 
 @RestController
 public class QueueRoutingController {
+    @Autowired
+    private JsonReqestRepository jsonReqestRepository;
     @Autowired
     private UserRepository userRepository;
 
@@ -25,14 +28,12 @@ public class QueueRoutingController {
     {
         User userFind = userRepository.findByUsername(username);
         if(userFind!= null && userFind.getPassword().equals(password)){
-            return "Верны данные авторизации.";
-//            String token = UUID.randomUUID().toString();
-//            MapCashBox mapCashBox = new MapCashBox();
-//            mapCashBox.setToken(token);
-//            mapCashBox.setOrganization(inn);
-//            mapCashRepository.save(mapCashBox);
-//
-//            return token;
+            JsonRequest jsonReqest = new JsonRequest();
+            jsonReqest.setJson(json);
+            jsonReqest.setToken(token);
+            jsonReqestRepository.save(jsonReqest);
+
+            return "ok";
         }else{
             return "Не верны данные авторизации.";
         }

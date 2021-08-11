@@ -1,4 +1,4 @@
-package com.icashgw.icashgw;
+package com.icashgw;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

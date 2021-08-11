@@ -1,9 +1,9 @@
-package com.icashgw.icashgw.controller;
+package com.icashgw.controller;
 
-import com.icashgw.icashgw.entity.MapCashBox;
-import com.icashgw.icashgw.entity.User;
-import com.icashgw.icashgw.repo.MapCashRepository;
-import com.icashgw.icashgw.repo.UserRepository;
+import com.icashgw.entity.MapCashBox;
+import com.icashgw.entity.User;
+import com.icashgw.repo.MapCashRepository;
+import com.icashgw.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
