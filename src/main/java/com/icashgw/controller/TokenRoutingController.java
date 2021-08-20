@@ -18,9 +18,9 @@ public class TokenRoutingController {
     @Autowired
     private TokenRoutingServise tokenRoutingServise;
 
-    @RequestMapping("/cashbox")
+    @RequestMapping("/gethost")
     // public MapCash hello(@RequestParam String name){
-    public List<String> auth(@RequestHeader String token){
+    public String auth(@RequestHeader String token){
         return tokenRoutingServise.hosts(token);
     }
     //health check
@@ -28,9 +28,10 @@ public class TokenRoutingController {
     @PostMapping("/execute/**")
     public String execute(@RequestHeader String token, @RequestBody String body, HttpServletRequest httpServletRequest){
         RestTemplate restTemplate = new RestTemplate();
-        List<String> hosts = tokenRoutingServise.hosts(token);
+        String hostURL = tokenRoutingServise.hosts(token);
 //        String hostURL = hosts.get(0);
-        String hostURL = hosts.get(new Random().nextInt(hosts.size()-1));
+//        String hostURL = hosts.get(new Random().nextInt(hosts.size()-1));
+//        String hostURL = hosts;
         String path = httpServletRequest.getRequestURL().toString().split("/execute/")[1];
         HttpMethod httpMethod = HttpMethod.resolve(httpServletRequest.getMethod().toUpperCase());
         HttpHeaders headers = new HttpHeaders();

@@ -1,5 +1,6 @@
 package com.icashgw.service;
 
+import com.icashgw.entity.MapCashBox;
 import com.icashgw.repo.MapCashRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ public class TokenRoutingServise {
     @Autowired
     private MapCashRepository mapCashRepository;
 
-    public List<String> hosts(String token){
+    public String hosts(String token){
 
 //
 //        ArrayList arrayList = new ArrayList();
@@ -28,7 +29,7 @@ public class TokenRoutingServise {
 //        return arrayList;
         //UUID.randomUUID();
 
-        return mapCashRepository.findByToken(token).get(0).getHost();
+        return mapCashRepository.findByToken(token).getHost();
 
     }
 
