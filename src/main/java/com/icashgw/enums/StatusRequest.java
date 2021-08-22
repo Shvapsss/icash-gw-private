@@ -1,5 +1,5 @@
 package com.icashgw.enums;
 
 public enum StatusRequest {
-    NEW,PROCESS,COMPLETED
+    NEW,PROCESS,COMPLETED,ERROR
 }

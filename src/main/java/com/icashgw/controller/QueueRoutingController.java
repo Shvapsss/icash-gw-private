@@ -1,9 +1,11 @@
 package com.icashgw.controller;
 
 import com.icashgw.entity.JsonRequest;
+import com.icashgw.entity.MapCashBox;
 import com.icashgw.entity.User;
 import com.icashgw.enums.StatusRequest;
 import com.icashgw.repo.JsonReqestRepository;
+import com.icashgw.repo.MapCashRepository;
 import com.icashgw.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -18,18 +20,19 @@ public class QueueRoutingController {
     @Autowired
     private JsonReqestRepository jsonReqestRepository;
     @Autowired
-    private UserRepository userRepository;
+    private MapCashRepository mapCashRepository;
 
     @RequestMapping("/queue")
     public String setQueueRouting(
-            @RequestHeader String username,
-            @RequestHeader String password,
             @RequestHeader String token,
             @RequestHeader String json
     )
     {
-        User userFind = userRepository.findByUsername(username);
-        if(userFind!= null && userFind.getPassword().equals(password)){
+//        User userFind = userRepository.findByUsername(username);
+//        if(userFind!= null && userFind.getPassword().equals(password)){
+        MapCashBox tokenFind = mapCashRepository.findByToken(token);
+        if (tokenFind!= null && tokenFind.getToken().equals(token))
+        {
             JsonRequest jsonReqest = new JsonRequest();
             jsonReqest.setJson(json);
             jsonReqest.setToken(token);
