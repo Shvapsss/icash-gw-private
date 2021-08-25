@@ -19,23 +19,19 @@ import java.util.UUID;
 public class QueueRoutingController {
     @Autowired
     private JsonReqestRepository jsonReqestRepository;
-//    @Autowired
-//    private UserRepository userRepository;
     @Autowired
     private MapCashRepository mapCashRepository;
 
     @RequestMapping("/queue")
     public String setQueueRouting(
-//            @RequestHeader String username,
-//            @RequestHeader String password,
             @RequestHeader String token,
             @RequestHeader String json
     )
     {
 //        User userFind = userRepository.findByUsername(username);
 //        if(userFind!= null && userFind.getPassword().equals(password)){
-        String tokenFind = mapCashRepository.findByToken(token).getToken();
-        if(tokenFind!= null & tokenFind.equals(token))
+        MapCashBox tokenFind = mapCashRepository.findByToken(token);
+        if (tokenFind!= null && tokenFind.getToken().equals(token))
         {
             JsonRequest jsonReqest = new JsonRequest();
             jsonReqest.setJson(json);
