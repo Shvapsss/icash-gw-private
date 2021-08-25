@@ -1,31 +1,40 @@
 package com.icashgw.entity;
 
+import com.icashgw.enums.TypeCashBox;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Document(collection = "mapCashBox")
 public class MapCashBox {
-    @Id
-    private String id;
+   // @Id
+    private String clientId;
     private String token;
+    private TypeCashBox type;
     private String inn;
     private String kpp;
-    private String host;
+    //private String host;
+    private List<HostCash> host;
+
+    public void setType(TypeCashBox type) {
+        this.type = type;
+    }
 
     public MapCashBox(String inn, String kpp, String token) {
-        this.id = inn+kpp;
+        this.clientId = inn+kpp;
         this.inn = inn;
         this.kpp = kpp;
         this.token = token;
     }
 
     public void setId(){
-        this.id = inn+kpp;
+        this.clientId = inn+kpp;
     }
     public String getId(){
-        return id;
+        return clientId;
     }
-    public String getHost() {
+    public List<HostCash> getHost() {
         return host;
     }
 
@@ -37,7 +46,7 @@ public class MapCashBox {
         this.kpp = kpp;
     }
 
-    public void setHost(String host) {
+    public void setHost(List<HostCash> host) {
         this.host = host;
     }
 

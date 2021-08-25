@@ -1,5 +1,6 @@
 package com.icashgw.controller;
 
+import com.icashgw.entity.HostCash;
 import com.icashgw.service.TokenRoutingServise;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -20,7 +21,7 @@ public class TokenRoutingController {
 
     @RequestMapping("/gethost")
     // public MapCash hello(@RequestParam String name){
-    public String auth(@RequestHeader String token){
+    public List<HostCash> auth(@RequestHeader String token){
         return tokenRoutingServise.hosts(token);
     }
     //health check
@@ -28,16 +29,16 @@ public class TokenRoutingController {
     @PostMapping("/execute/**")
     public String execute(@RequestHeader String token, @RequestBody String body, HttpServletRequest httpServletRequest){
         RestTemplate restTemplate = new RestTemplate();
-        String hostURL = tokenRoutingServise.hosts(token);
-//        String hostURL = hosts.get(0);
-//        String hostURL = hosts.get(new Random().nextInt(hosts.size()-1));
-//        String hostURL = hosts;
+        List<HostCash> hosts = tokenRoutingServise.hosts(token);
+        //String hostURL = hosts.get(0);
+        HostCash hostURL = hosts.get(new Random().nextInt(hosts.size()-1));
+        //String hostURL = hosts;
         String path = httpServletRequest.getRequestURL().toString().split("/execute/")[1];
         HttpMethod httpMethod = HttpMethod.resolve(httpServletRequest.getMethod().toUpperCase());
         HttpHeaders headers = new HttpHeaders();
         //headers.add("username",username.getValue());
 
-        String response = restTemplate.exchange("http://"+hostURL+"/"+path, httpMethod,new HttpEntity<>(body,headers),String.class).getBody();
+        String response = restTemplate.exchange("http://"+hostURL.getHost()+":"+hostURL.getPort()+"/"+path, httpMethod,new HttpEntity<>(body,headers),String.class).getBody();
         return response;
 
     }
