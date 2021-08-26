@@ -33,11 +33,7 @@ public class QueueRoutingController {
         MapCashBox tokenFind = mapCashRepository.findByToken(token);
         if (tokenFind!= null && tokenFind.getToken().equals(token))
         {
-            JsonRequest jsonReqest = new JsonRequest();
-            jsonReqest.setJson(json);
-            jsonReqest.setToken(token);
-            jsonReqest.setDateOfReceipt(new Date());
-            jsonReqest.setStatusRequest(StatusRequest.NEW);
+            JsonRequest jsonReqest = new JsonRequest(json,token,new Date(),StatusRequest.NEW,new Date());
             jsonReqestRepository.save(jsonReqest);
 
             return "ok";

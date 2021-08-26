@@ -11,13 +11,30 @@ public class JsonRequest {
     private String token;
     private Date dateOfReceipt;
     private StatusRequest statusRequest;
+    private Date dateOfChange;
 
-    public Date getDateOfReceipt() {
-        return dateOfReceipt;
+    public JsonRequest(String json, String token, Date dateOfReceipt, StatusRequest statusRequest, Date dateOfChange) {
+        this.json = json;
+        this.token = token;
+        this.dateOfReceipt = dateOfReceipt;
+        this.statusRequest = statusRequest;
+        this.dateOfChange = dateOfChange;
+    }
+
+    public Date getDateOfChange() {
+        return dateOfChange;
+    }
+
+    public void setDateOfChange(Date dateOfChange) {
+        this.dateOfChange = dateOfChange;
     }
 
     public void setDateOfReceipt(Date dateOfReceipt) {
         this.dateOfReceipt = dateOfReceipt;
+    }
+
+    public Date getDateOfReceipt() {
+        return dateOfReceipt;
     }
 
     public StatusRequest getStatusRequest() {
