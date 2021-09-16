@@ -17,9 +17,9 @@ import java.util.Date;
 @RestController
 public class QueueRoutingController {
     @Autowired
-    private JsonReqestRepository jsonReqestRepository;
+    JsonReqestRepository jsonReqestRepository;
     @Autowired
-    private MapCashRepository mapCashRepository;
+    MapCashRepository mapCashRepository;
 
     @RequestMapping("/queue/**")
     public String setQueueRouting(
