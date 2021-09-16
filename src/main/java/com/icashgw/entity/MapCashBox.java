@@ -14,7 +14,6 @@ public class MapCashBox {
     private TypeCashBox type;
     private String inn;
     private String kpp;
-    //private String host;
     private List<HostCash> host;
 
     public void setType(TypeCashBox type) {

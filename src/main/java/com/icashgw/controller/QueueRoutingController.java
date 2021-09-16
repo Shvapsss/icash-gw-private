@@ -8,11 +8,14 @@ import com.icashgw.repo.JsonReqestRepository;
 import com.icashgw.repo.MapCashRepository;
 import com.icashgw.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -22,24 +25,39 @@ public class QueueRoutingController {
     @Autowired
     private MapCashRepository mapCashRepository;
 
-    @RequestMapping("/queue")
+    @RequestMapping("/queue/**")
     public String setQueueRouting(
             @RequestHeader String token,
-            @RequestHeader String json
+            @RequestBody String json,
+            HttpServletRequest httpServletRequest
+           // @RequestHeader String json
     )
     {
 //        User userFind = userRepository.findByUsername(username);
 //        if(userFind!= null && userFind.getPassword().equals(password)){
+        String path = httpServletRequest.getRequestURL().toString().split("/queue/")[1];
         MapCashBox tokenFind = mapCashRepository.findByToken(token);
         if (tokenFind!= null && tokenFind.getToken().equals(token))
         {
-            JsonRequest jsonReqest = new JsonRequest(json,token,new Date(),StatusRequest.NEW,new Date());
+            JsonRequest jsonReqest = new JsonRequest(json,path,token,new Date(),StatusRequest.NEW,new Date());
             jsonReqestRepository.save(jsonReqest);
 
-            return "ok";
+            return jsonReqest.get_id().toString();
         }else{
-            return "Не верны данные авторизации.";
+            return "Не верно указаны данные авторизации.";
         }
 
+    }
+    @RequestMapping("/queuestatus")
+    public String getStatus(
+            @RequestHeader String token,
+            @RequestHeader String request){
+        //вернуть статус и json который отдала касса
+        MapCashBox tokenFind = mapCashRepository.findByToken(token);
+        if (tokenFind!= null && tokenFind.getToken().equals(token)) {
+            return "status "+ jsonReqestRepository.findById(request).get().getStatusRequest().toString() + " responce " +jsonReqestRepository.findById(request).get().getRequest();
+        }else {
+            return "no index";
+        }
     }
 }

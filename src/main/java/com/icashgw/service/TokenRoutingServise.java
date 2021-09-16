@@ -14,25 +14,7 @@ public class TokenRoutingServise {
     private MapCashRepository mapCashRepository;
 
     public List<HostCash> hosts(String token){
-
-//
-//        ArrayList arrayList = new ArrayList();
-//        arrayList.add("1/1");
-//        arrayList.add("1/2");
-//        arrayList.add("1/3");
-//
-//        //arrayList.add(mapCashRepository.findById(token));
-//        MapCashBox mapCashBox = new MapCashBox();
-//        mapCashBox.setToken("132t");
-//        mapCashBox.setHost(arrayList);
-//        mapCashRepository.save(mapCashBox);
-//
-//        return arrayList;
-        //UUID.randomUUID();
-
-        //return mapCashRepository.findByToken(token).getHost();
         return mapCashRepository.findByToken(token).getHost();
-
     }
 
 }

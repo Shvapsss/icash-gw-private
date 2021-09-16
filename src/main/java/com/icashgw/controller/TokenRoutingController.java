@@ -30,16 +30,14 @@ public class TokenRoutingController {
     public String execute(@RequestHeader String token, @RequestBody String body, HttpServletRequest httpServletRequest){
         RestTemplate restTemplate = new RestTemplate();
         List<HostCash> hosts = tokenRoutingServise.hosts(token);
-        HostCash hostURL = hosts.get(0);
-        //HostCash hostURL = hosts.get(new Random().nextInt(hosts.size()-1));
-        //String hostURL = hosts;
-        //HostCash hostURL = hosts.get((int)Math.random() * (hosts.size()-1));
+
+        HostCash hostURL = hosts.get(new Random().nextInt(hosts.size()));
         String path = httpServletRequest.getRequestURL().toString().split("/execute/")[1];
         HttpMethod httpMethod = HttpMethod.resolve(httpServletRequest.getMethod().toUpperCase());
         HttpHeaders headers = new HttpHeaders();
-        //headers.add("username",username.getValue());
 
-        String response = restTemplate.exchange("http://"+hostURL.getHost()+":"+hostURL.getPort()+"/"+path, httpMethod,new HttpEntity<>(body,headers),String.class).getBody();
+        String response = restTemplate.exchange("http://"+hostURL.getHost()+":"+hostURL.getPort()+"/"+path,
+                httpMethod,new HttpEntity<>(body,headers),String.class).getBody();
         return response;
 
     }
