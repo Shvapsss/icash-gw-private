@@ -9,13 +9,7 @@ import java.util.Date;
 
 @Document(collection = "jsonRequest")
 public class JsonRequest {
-    public ObjectId get_id() {
-        return _id;
-    }
 
-    public void set_id(ObjectId _id) {
-        this._id = _id;
-    }
 
     @Id
     private ObjectId _id;
@@ -27,22 +21,32 @@ public class JsonRequest {
     private Date dateOfChange;
     private String request;
     private boolean connectionTimeout;
+    private String httpMethod;
 
 
 
-    public JsonRequest(String json, String path, String token, Date dateOfReceipt, StatusRequest statusRequest, Date dateOfChange) {
+    public JsonRequest(String json, String path, String token, Date dateOfReceipt, StatusRequest statusRequest, Date dateOfChange, String httpMethod) {
         this.json = json;
         this.path = path;
         this.token = token;
         this.dateOfReceipt = dateOfReceipt;
         this.statusRequest = statusRequest;
         this.dateOfChange = dateOfChange;
+        this.httpMethod = httpMethod;
     }
+
 
     public String getPath() {
         return path;
     }
 
+    public ObjectId get_id() {
+        return _id;
+    }
+
+    public void set_id(ObjectId _id) {
+        this._id = _id;
+    }
     public void setPath(String path) {
         this.path = path;
     }
